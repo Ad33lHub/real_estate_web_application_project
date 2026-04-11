@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properties - Dream Homes</title>
+  <meta name="description" content="Browse available properties - houses, apartments, plots, and commercial properties.">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <!-- Hero -->
+  <section class="position-relative" style="height: 40vh; overflow: hidden;">
+    <img src="/images/dhaMain-tXhDdXDf.png" alt="Properties" class="w-100 h-100" style="object-fit: cover;">
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center" style="background: rgba(0,0,0,0.5);">
+      <h1 class="display-4 fw-bold text-white">ALL PROPERTIES</h1>
+      <p class="fs-5 text-white-50">Find your dream property</p>
+    </div>
+  </section>
+
+  <div class="container py-5">
+    <!-- Search & Filter Bar -->
+    <div class="card mb-5 p-4" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(253,230,138,0.2);">
+      <form id="filterForm" class="row g-3">
+        <div class="col-md-3">
+          <input type="text" class="form-control" id="searchInput" placeholder="Search properties..." name="search">
+        </div>
+        <div class="col-md-2">
+          <select class="form-select" id="typeFilter" name="type">
+            <option value="">All Types</option>
+            <option value="house">House</option>
+            <option value="apartment">Apartment</option>
+            <option value="plot">Plot</option>
+            <option value="commercial">Commercial</option>
+            <option value="farmhouse">Farmhouse</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <input type="number" class="form-control" id="minPrice" placeholder="Min Price" name="minPrice">
+        </div>
+        <div class="col-md-2">
+          <input type="number" class="form-control" id="maxPrice" placeholder="Max Price" name="maxPrice">
+        </div>
+        <div class="col-md-2">
+          <select class="form-select" id="statusFilter" name="status">
+            <option value="">All Status</option>
+            <option value="available">Available</option>
+            <option value="sold">Sold</option>
+            <option value="rented">Rented</option>
+          </select>
+        </div>
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-gold w-100"><i class="fas fa-search"></i></button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Properties Grid -->
+    <div class="row g-4" id="propertiesGrid">
+      <% if (properties && properties.length > 0) { %>
+        <% properties.forEach(function(prop) { %>
+          <div class="col-lg-4 col-md-6">
+            <div class="property-card card border-0 h-100">
+              <% if (prop.propertyImages && prop.propertyImages.length > 0) { %>
+                <img src="/uploads/<%= prop.propertyImages[0] %>" class="card-img-top" alt="<%= prop.propertyLocation %>" style="height: 200px; object-fit: cover;">
+              <% } else { %>
+                <img src="/images/kharianMain-8UJAappW.png" class="card-img-top" alt="Property" style="height: 200px; object-fit: cover;">
+              <% } %>
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <h5 class="card-title mb-0"><%= prop.propertyType.charAt(0).toUpperCase() + prop.propertyType.slice(1) %></h5>
+                  <span class="badge bg-<%= prop.status === 'available' ? 'success' : prop.status === 'sold' ? 'danger' : 'warning' %>"><%= prop.status %></span>
+                </div>
+                <p class="text-white-50 mb-1"><i class="fas fa-map-marker-alt me-2"></i><%= prop.propertyLocation %></p>
+                <p class="text-white-50 mb-1"><i class="fas fa-ruler-combined me-2"></i><%= prop.propertySize %></p>
+                <p class="price mb-1"><i class="fas fa-tag me-2"></i>RS <%= prop.askingPrice ? prop.askingPrice.toLocaleString() : 'N/A' %></p>
+                <p class="text-white-50 small mb-0"><i class="fas fa-user me-2"></i><%= prop.contactName %></p>
+              </div>
+              <div class="card-footer bg-transparent border-0 d-flex gap-2 pb-3 px-3">
+                <a href="tel:<%= prop.contactPhone %>" class="btn btn-sm btn-outline-light flex-fill"><i class="fas fa-phone me-1"></i>Call</a>
+                <a href="https://wa.me/<%= prop.contactPhone %>" class="btn btn-sm btn-success flex-fill"><i class="fab fa-whatsapp me-1"></i>WhatsApp</a>
+                <a href="mailto:<%= prop.contactEmail || '' %>" class="btn btn-sm btn-outline-light flex-fill"><i class="fas fa-envelope me-1"></i>Email</a>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <div class="col-12 text-center py-5">
+          <i class="fas fa-home fa-3x mb-3" style="color: var(--accent-gold);"></i>
+          <h4 class="text-white">No Properties Found</h4>
+          <p class="text-white-50">Be the first to list a property!</p>
+          <a href="/add-property" class="btn btn-gold mt-2"><i class="fas fa-plus me-2"></i>Add Property</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+
+  <script>
+    // Client-side filter form
+    document.getElementById('filterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const search = document.getElementById('searchInput').value;
+      const type = document.getElementById('typeFilter').value;
+      const minPrice = document.getElementById('minPrice').value;
+      const maxPrice = document.getElementById('maxPrice').value;
+      const status = document.getElementById('statusFilter').value;
+
+      let url = '/properties?';
+      if (search) url += `search=${encodeURIComponent(search)}&`;
+      if (type) url += `type=${type}&`;
+      if (minPrice) url += `minPrice=${minPrice}&`;
+      if (maxPrice) url += `maxPrice=${maxPrice}&`;
+      if (status) url += `status=${status}&`;
+
+      window.location.href = url;
+    });
+  </script>
+</body>
+</html>

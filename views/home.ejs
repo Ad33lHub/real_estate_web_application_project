@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dream Homes - Find Your Perfect Property</title>
+  <meta name="description" content="Dream Homes Marketing - Your trusted real estate partner in Pakistan. Find properties, agents, and deals.">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <!-- Hero Section -->
+  <section class="position-relative" style="height: 80vh; overflow: hidden;">
+    <img src="/images/dhaMain-tXhDdXDf.png" alt="Dream Homes Hero" class="w-100 h-100" style="object-fit: cover;">
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end align-items-center text-center pb-5" style="background: rgba(0,0,0,0.4);">
+      <h1 class="display-3 fw-bold text-white mb-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Find Your Perfect Property Now</h1>
+      <p class="fs-4 text-white mb-4" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Explore exclusive listings, prime locations, and unbeatable deals.</p>
+      <div>
+        <a href="/properties" class="btn btn-gold btn-lg me-2 px-4"><i class="fas fa-search me-2"></i>Browse Properties</a>
+        <a href="/add-property" class="btn btn-outline-gold btn-lg px-4"><i class="fas fa-plus me-2"></i>Sell Property</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who We Are -->
+  <section class="container text-center py-5 mt-4">
+    <h2 class="section-title mb-3">WHO WE ARE</h2>
+    <p class="text-white-50 fs-5 mx-auto" style="max-width: 800px;">We are more than just a real estate company – we are your partners, your advocates, and your trusted guides in navigating the world of property.</p>
+  </section>
+
+  <!-- Features -->
+  <section class="container pb-5">
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-3 col-md-6">
+        <div class="card h-100 text-center p-4" style="background: var(--primary-dark); border: 1px solid var(--accent-gold); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 20px rgba(253,230,138,0.15)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+          <div class="fs-1 mb-3">📈</div>
+          <h5 class="text-white fw-bold">Good Marketing</h5>
+          <p class="text-white-50">We make a maximum reach for our audience with innovation & digitalization.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card h-100 text-center p-4" style="background: var(--primary-dark); border: 1px solid var(--accent-gold); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 20px rgba(253,230,138,0.15)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+          <div class="fs-1 mb-3">💰</div>
+          <h5 class="text-white fw-bold">Low Cost</h5>
+          <p class="text-white-50">We offer quality at the best prices, ensuring cost-efficient solutions.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card h-100 text-center p-4" style="background: var(--primary-dark); border: 1px solid var(--accent-gold); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 20px rgba(253,230,138,0.15)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+          <div class="fs-1 mb-3">🔍</div>
+          <h5 class="text-white fw-bold">Easy to Find</h5>
+          <p class="text-white-50">By latest technology, diverse property findings are just a click away.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card h-100 text-center p-4" style="background: var(--primary-dark); border: 1px solid var(--accent-gold); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 20px rgba(253,230,138,0.15)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+          <div class="fs-1 mb-3">🛡️</div>
+          <h5 class="text-white fw-bold">Reliable</h5>
+          <p class="text-white-50">Our process is designed to deliver unmatched reliability for our clientele.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Description Section -->
+  <section class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-md-5 mb-4 mb-md-0">
+        <img src="/images/aboutHomePage.jpg" alt="Pakistan Real Estate" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-7">
+        <h2 style="color: var(--accent-gold);" class="mb-3">What Makes Pakistan Real Estate Challenging?</h2>
+        <p class="text-white-50 lh-lg">
+          The process of buying property in Pakistan comes with several challenges. One of the main issues is dealing with complex rules and paperwork. Another big problem is fluctuating property prices.
+        </p>
+        <p class="text-white-50 lh-lg">
+          Checking documents for genuineness is a major challenge. Buyers need to work with experienced lawyers, real estate agents, and other professionals to navigate the market safely.
+        </p>
+        <a href="/properties" class="btn btn-gold mt-3"><i class="fas fa-arrow-right me-2"></i>Explore Properties</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Properties from DB -->
+  <section class="container py-5">
+    <h2 class="section-title text-center mb-5">OUR PROJECTS</h2>
+    <div class="row g-4">
+      <% if (properties && properties.length > 0) { %>
+        <% properties.slice(0, 6).forEach(function(prop) { %>
+          <div class="col-lg-4 col-md-6">
+            <div class="property-card card border-0">
+              <% if (prop.propertyImages && prop.propertyImages.length > 0) { %>
+                <img src="/uploads/<%= prop.propertyImages[0] %>" class="card-img-top" alt="<%= prop.propertyLocation %>" style="height: 200px; object-fit: cover;">
+              <% } else { %>
+                <img src="/images/kharianMain-8UJAappW.png" class="card-img-top" alt="Property" style="height: 200px; object-fit: cover;">
+              <% } %>
+              <div class="card-body">
+                <h5 class="card-title"><%= prop.propertyType.charAt(0).toUpperCase() + prop.propertyType.slice(1) %> - <%= prop.propertyLocation %></h5>
+                <p class="text-white-50 mb-1"><i class="fas fa-ruler-combined me-2"></i><%= prop.propertySize %></p>
+                <p class="price mb-1">RS <%= prop.askingPrice ? prop.askingPrice.toLocaleString() : 'N/A' %></p>
+                <span class="badge bg-success"><%= prop.status %></span>
+              </div>
+              <div class="card-footer bg-transparent border-0 d-flex gap-2 pb-3 px-3">
+                <a href="tel:<%= prop.contactPhone %>" class="btn btn-sm btn-outline-light flex-fill"><i class="fas fa-phone me-1"></i>Call</a>
+                <a href="https://wa.me/<%= prop.contactPhone %>" class="btn btn-sm btn-success flex-fill"><i class="fab fa-whatsapp me-1"></i>WhatsApp</a>
+                <a href="mailto:<%= prop.contactEmail %>" class="btn btn-sm btn-outline-light flex-fill"><i class="fas fa-envelope me-1"></i>Email</a>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <!-- Static fallback cards when no DB properties -->
+        <div class="col-lg-4 col-md-6">
+          <div class="property-card card border-0">
+            <img src="/images/kharianMain-8UJAappW.png" class="card-img-top" alt="Grand City Vehari" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">Grand City Vehari</h5>
+              <p class="text-white-50">Hasilpur - Vehari Road, Vehari</p>
+              <p class="price">Starting from: RS 200,000</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 d-flex gap-2 pb-3 px-3">
+              <a href="tel:+923088178643" class="btn btn-sm btn-outline-light flex-fill">Call</a>
+              <a href="https://wa.me/+923088178643" class="btn btn-sm btn-success flex-fill">WhatsApp</a>
+              <a href="mailto:info@dreamhomes.pk" class="btn btn-sm btn-outline-light flex-fill">Email</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="property-card card border-0">
+            <img src="/images/riverPlot.png" class="card-img-top" alt="Central Park Lahore" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">Central Park Lahore</h5>
+              <p class="text-white-50">Main Ferozpur Road - Urban Developers</p>
+              <p class="price">Starting from: RS 749,000</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 d-flex gap-2 pb-3 px-3">
+              <a href="tel:+923088178643" class="btn btn-sm btn-outline-light flex-fill">Call</a>
+              <a href="https://wa.me/+923088178643" class="btn btn-sm btn-success flex-fill">WhatsApp</a>
+              <a href="mailto:info@dreamhomes.pk" class="btn btn-sm btn-outline-light flex-fill">Email</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="property-card card border-0">
+            <img src="/images/metrocityMain-CwaZULYV.png" class="card-img-top" alt="A1 Apartment" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">Central Park Lahore (A1 Apartment)</h5>
+              <p class="text-white-50">Main Ferozpur Road - Urban Developers</p>
+              <p class="price">Starting from: 15% Down Payment</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 d-flex gap-2 pb-3 px-3">
+              <a href="tel:+923088178643" class="btn btn-sm btn-outline-light flex-fill">Call</a>
+              <a href="https://wa.me/+923088178643" class="btn btn-sm btn-success flex-fill">WhatsApp</a>
+              <a href="mailto:info@dreamhomes.pk" class="btn btn-sm btn-outline-light flex-fill">Email</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+    <div class="text-center mt-4">
+      <a href="/properties" class="btn btn-gold btn-lg px-5"><i class="fas fa-th me-2"></i>View All Properties</a>
+    </div>
+  </section>
+
+  <!-- Partner Section -->
+  <section class="container py-5">
+    <div class="mx-auto p-5 rounded-3" style="max-width: 900px; background: rgba(0,0,0,0.2);">
+      <h3 class="section-title text-center mb-4">What Makes Dream Homes Marketing Your Perfect Partner?</h3>
+      <p class="text-white-50 text-center lh-lg">
+        <strong class="text-white">Dream Homes Marketing</strong> is more than just a real estate agency; we're your trusted partner in fulfilling your dream of owning a home. Our commitment to affordability, prime locations, and exceptional customer service sets us apart. We provide transparent deals, thorough documentation support, and expert guidance at every step.
+      </p>
+    </div>
+  </section>
+
+  <!-- Help Section -->
+  <section class="container py-5">
+    <div class="row">
+      <div class="col-md-8">
+        <h2 class="text-white fw-bold mb-3">Our Expert Will Help You</h2>
+        <p class="text-white-50 fs-5">Feel Free to Contact Us at Any Time, We Are Online 24/7</p>
+        <div class="d-flex gap-3 mt-3">
+          <a href="tel:+923088178643" class="btn btn-gold px-4"><i class="fas fa-phone me-2"></i>CALL</a>
+          <a href="https://wa.me/+923088178643" class="btn btn-success px-4"><i class="fab fa-whatsapp me-2"></i>WHATSAPP</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

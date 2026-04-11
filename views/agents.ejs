@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Agents - Dream Homes</title>
+  <meta name="description" content="Meet our experienced real estate agents ready to help you find your perfect property.">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <!-- Hero -->
+  <section class="position-relative" style="height: 40vh; overflow: hidden;">
+    <img src="/images/description.jpg" alt="Our Agents" class="w-100 h-100" style="object-fit: cover;">
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end align-items-center pb-5" style="background: rgba(0,0,0,0.4);">
+      <h1 class="display-4 fw-bold text-white">OUR AGENTS</h1>
+      <p class="fs-5 text-white-50">TEAM OF REAL ESTATE EXPERTS</p>
+    </div>
+  </section>
+
+  <div class="container py-5">
+    <h2 class="section-title text-center mb-2">FIND YOUR AGENT TO FIND A HOME</h2>
+    <p class="text-white-50 text-center mb-5 fs-5">Our experienced agents are here to assist you</p>
+
+    <div class="row g-4 justify-content-center">
+      <% if (agents && agents.length > 0) { %>
+        <% agents.forEach(function(agent) { %>
+          <div class="col-lg-4 col-md-6">
+            <div class="card text-center h-100" style="background: var(--primary-dark); border: 1px solid #fff; border-radius: 10px; overflow: hidden; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='none'">
+              <% if (agent.image) { %>
+                <img src="/images/<%= agent.image %>" class="card-img-top" alt="<%= agent.agentName %>" style="height: 200px; object-fit: cover;">
+              <% } else { %>
+                <div class="d-flex align-items-center justify-content-center" style="height: 200px; background: rgba(255,255,255,0.05);">
+                  <i class="fas fa-user fa-4x" style="color: var(--accent-gold);"></i>
+                </div>
+              <% } %>
+              <div class="card-body">
+                <h5 style="color: var(--accent-gold);"><%= agent.agentName %></h5>
+                <p class="text-white-50 mb-1"><%= agent.agencyName || 'Dream Homes Marketing' %></p>
+                <p class="text-white-50"><i class="fas fa-briefcase me-1"></i>Experience: <%= agent.experience || 0 %> years</p>
+              </div>
+              <div class="card-footer bg-transparent border-0 d-flex gap-2 justify-content-center pb-3">
+                <a href="tel:<%= agent.phone %>" class="btn btn-sm btn-danger"><i class="fas fa-phone me-1"></i>Call</a>
+                <a href="https://wa.me/<%= agent.phone %>" class="btn btn-sm btn-success"><i class="fab fa-whatsapp me-1"></i>WhatsApp</a>
+                <a href="mailto:<%= agent.email %>" class="btn btn-sm btn-danger"><i class="fas fa-envelope me-1"></i>Email</a>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <!-- Static fallback agents -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card text-center h-100" style="background: var(--primary-dark); border: 1px solid #fff; border-radius: 10px; overflow: hidden; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='none'">
+            <img src="/images/ArfatPIC.jpg" class="card-img-top" alt="Arfat Choudhari" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 style="color: var(--accent-gold);">Arfat Choudhari</h5>
+              <p class="text-white-50 mb-1">Dream Homes Marketing</p>
+              <p class="text-white-50"><i class="fas fa-briefcase me-1"></i>Experience: 4 years</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 d-flex gap-2 justify-content-center pb-3">
+              <a href="tel:+923088178643" class="btn btn-sm btn-danger"><i class="fas fa-phone me-1"></i>Call</a>
+              <a href="https://wa.me/+923088178643" class="btn btn-sm btn-success"><i class="fab fa-whatsapp me-1"></i>WhatsApp</a>
+              <a href="mailto:info@dreamhomes.pk" class="btn btn-sm btn-danger"><i class="fas fa-envelope me-1"></i>Email</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card text-center h-100" style="background: var(--primary-dark); border: 1px solid #fff; border-radius: 10px; overflow: hidden; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='none'">
+            <img src="/images/riverPlot.png" class="card-img-top" alt="Hasnain Khan" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 style="color: var(--accent-gold);">Hasnain Khan</h5>
+              <p class="text-white-50 mb-1">Dream Homes Marketing</p>
+              <p class="text-white-50"><i class="fas fa-briefcase me-1"></i>Experience: 3 years</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 d-flex gap-2 justify-content-center pb-3">
+              <a href="tel:+923088178643" class="btn btn-sm btn-danger"><i class="fas fa-phone me-1"></i>Call</a>
+              <a href="https://wa.me/+923088178643" class="btn btn-sm btn-success"><i class="fab fa-whatsapp me-1"></i>WhatsApp</a>
+              <a href="mailto:info@dreamhomes.pk" class="btn btn-sm btn-danger"><i class="fas fa-envelope me-1"></i>Email</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

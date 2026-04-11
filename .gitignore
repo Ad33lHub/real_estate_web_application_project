@@ -1,0 +1,10 @@
+node_modules/
+.env
+public/uploads/*
+!public/uploads/.gitkeep
+screenshots/
+generate_report.py
+Lab_Mid_Report_Dream_Homes.docx
+Lab_Mid_Taha.docx
+Lab Mid.pdf
+*.zip

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Sign Up - Dream Homes</title>
+  <meta name="description" content="Login or create an account with Dream Homes Marketing.">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card p-4 p-md-5" style="background: var(--primary-dark); border: 2px solid var(--accent-gold); border-radius: 10px;">
+          <h1 class="text-center text-white mb-4" style="font-size: 1.5rem;">WELCOME TO THE DREAM HOMES PORTAL!</h1>
+
+          <!-- Tabs -->
+          <ul class="nav nav-tabs mb-4" id="authTabs" role="tablist" style="border-color: var(--accent-gold);">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active fw-bold" id="login-tab" data-bs-toggle="tab" data-bs-target="#loginPanel" type="button" style="color: var(--accent-gold); background: none; border-color: transparent transparent var(--accent-gold) transparent;">LOGIN</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link fw-bold" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signupPanel" type="button" style="color: var(--accent-gold); background: none;">SIGN UP</button>
+            </li>
+          </ul>
+
+          <div id="authAlert" class="d-none"></div>
+
+          <div class="tab-content" id="authTabsContent">
+            <!-- Login Form -->
+            <div class="tab-pane fade show active" id="loginPanel" role="tabpanel">
+              <form id="loginForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                  </div>
+                  <div class="col-12 text-end">
+                    <a href="#" style="color: var(--accent-gold); font-size: 14px;">Forgot your password?</a>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-gold btn-lg w-100 mt-2">
+                      <i class="fas fa-sign-in-alt me-2"></i>LOGIN
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="tab-pane fade" id="signupPanel" role="tabpanel">
+              <form id="signupForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control" name="firstName" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Phone #</label>
+                    <input type="tel" class="form-control" name="phone" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" required minlength="6">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirmPassword" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">CNIC #</label>
+                    <input type="text" class="form-control" name="cnic" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Select Country</label>
+                    <select class="form-select" name="country" required>
+                      <option value="">Select Country</option>
+                      <option value="PK">Pakistan</option>
+                      <option value="US">United States</option>
+                      <option value="UK">United Kingdom</option>
+                      <option value="CA">Canada</option>
+                      <option value="AU">Australia</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-control" name="city" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Select Gender</label>
+                    <select class="form-select" name="gender" required>
+                      <option value="">Select Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-gold btn-lg w-100 mt-2">
+                      <i class="fas fa-user-plus me-2"></i>REGISTER
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+
+  <script>
+    const alertDiv = document.getElementById('authAlert');
+
+    function showAlert(message, type) {
+      alertDiv.className = `alert alert-${type} mb-3`;
+      alertDiv.innerHTML = message;
+      alertDiv.classList.remove('d-none');
+      setTimeout(() => alertDiv.classList.add('d-none'), 5000);
+    }
+
+    // Login
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+
+      try {
+        const response = await fetch('/api/users/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await response.json();
+
+        if (response.ok) {
+          showAlert('<i class="fas fa-check-circle me-2"></i>' + result.message, 'success');
+          localStorage.setItem('token', result.token);
+          localStorage.setItem('user', JSON.stringify(result.user));
+          setTimeout(() => window.location.href = '/', 1500);
+        } else {
+          showAlert('<i class="fas fa-exclamation-circle me-2"></i>' + result.message, 'danger');
+        }
+      } catch (error) {
+        showAlert('<i class="fas fa-exclamation-circle me-2"></i>Server error during login', 'danger');
+      }
+    });
+
+    // Signup
+    document.getElementById('signupForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+
+      if (data.password !== data.confirmPassword) {
+        showAlert('<i class="fas fa-exclamation-circle me-2"></i>Passwords do not match.', 'danger');
+        return;
+      }
+
+      delete data.confirmPassword;
+
+      try {
+        const response = await fetch('/api/users/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await response.json();
+
+        if (response.ok) {
+          showAlert('<i class="fas fa-check-circle me-2"></i>' + result.message, 'success');
+          this.reset();
+          // Switch to login tab
+          document.getElementById('login-tab').click();
+        } else {
+          showAlert('<i class="fas fa-exclamation-circle me-2"></i>' + result.message, 'danger');
+        }
+      } catch (error) {
+        showAlert('<i class="fas fa-exclamation-circle me-2"></i>Server error during registration', 'danger');
+      }
+    });
+  </script>
+</body>
+</html>

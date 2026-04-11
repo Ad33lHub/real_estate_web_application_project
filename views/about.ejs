@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Dream Homes</title>
+  <meta name="description" content="Learn about Dream Homes Marketing - your trusted real estate partner in Pakistan.">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <!-- Hero -->
+  <section class="position-relative" style="height: 40vh; overflow: hidden;">
+    <img src="/images/aboutHomePage.jpg" alt="About Us" class="w-100 h-100" style="object-fit: cover;">
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center" style="background: rgba(0,0,0,0.5);">
+      <h1 class="display-4 fw-bold text-white">ABOUT US</h1>
+      <p class="fs-5 text-white-50">Your Trusted Real Estate Partner</p>
+    </div>
+  </section>
+
+  <div class="container py-5">
+    <!-- About Content -->
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="/images/aboutHomePage.jpg" alt="About Dream Homes" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-6">
+        <h2 style="color: var(--accent-gold);" class="mb-3">Dream Homes Marketing</h2>
+        <p class="text-white-50 lh-lg">
+          We are more than just a real estate company – we are your partners, your advocates, and your trusted guides
+          in navigating the world of property in Pakistan.
+        </p>
+        <p class="text-white-50 lh-lg">
+          Our team of experienced professionals is dedicated to providing transparent, reliable, and affordable
+          real estate solutions. Whether you're buying your first home, selling a property, or investing in commercial
+          real estate, we're here to guide you every step of the way.
+        </p>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="p-5 rounded-3 mb-5" style="background: rgba(0,0,0,0.2);">
+      <h3 class="section-title text-center mb-4">OUR VALUES</h3>
+      <div class="row g-4">
+        <div class="col-md-4 text-center">
+          <div class="fs-1 mb-3">🏠</div>
+          <h5 class="text-white">Trust & Transparency</h5>
+          <p class="text-white-50">We believe in honest dealings and transparent communication with all our clients.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="fs-1 mb-3">🤝</div>
+          <h5 class="text-white">Client First</h5>
+          <p class="text-white-50">Your property goals are our priority. We work tirelessly to meet your needs.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="fs-1 mb-3">⭐</div>
+          <h5 class="text-white">Excellence</h5>
+          <p class="text-white-50">We deliver exceptional service quality and strive for excellence in everything we do.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="row g-4 text-center">
+      <div class="col-md-3 col-6">
+        <div class="p-4 rounded" style="background: rgba(0,0,0,0.2);">
+          <h2 style="color: var(--accent-green);" class="fw-bold">500+</h2>
+          <p class="text-white-50 mb-0">Properties Sold</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="p-4 rounded" style="background: rgba(0,0,0,0.2);">
+          <h2 style="color: var(--accent-green);" class="fw-bold">1000+</h2>
+          <p class="text-white-50 mb-0">Happy Clients</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="p-4 rounded" style="background: rgba(0,0,0,0.2);">
+          <h2 style="color: var(--accent-green);" class="fw-bold">50+</h2>
+          <p class="text-white-50 mb-0">Expert Agents</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="p-4 rounded" style="background: rgba(0,0,0,0.2);">
+          <h2 style="color: var(--accent-green);" class="fw-bold">5+</h2>
+          <p class="text-white-50 mb-0">Years Experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
