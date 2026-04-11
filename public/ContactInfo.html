@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(23, 37, 84);
+        color: rgb(255, 254, 254);
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: rgb(23, 37, 84);
+        border-bottom: 2px solid #FDE68A;
+        padding: 10px;
+    }
+
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        position: relative;
+    }
+
+    nav ul li {
+        margin: 0 15px;
+        position: relative;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: rgb(23, 37, 84);
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        left: 0;
+        top: 100%;
+    }
+
+    .dropdown-menu li {
+        margin: 0;
+        padding: 10px;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 100px;
+
+    }
+
+    .buttons .button_a {
+        text-align: center;
+        display: inline-block;
+        padding: 100px 100px;
+        background: rgb(23, 37, 84);
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s;
+        font-size: 24px;
+        border: 1px solid #FDE68A;
+    }
+
+    .buttons .button_a:hover {
+
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(255, 77, 77, 0.3);
+        border-color: #ff4d4d;
+    }
+
+    .button_a i {
+    padding: 3px;
+    font-size: 40px;
+    vertical-align: middle; 
+    margin-bottom: 20px;
+}
+    
+    .HelpInfo {
+        display: relative;
+        margin: 200px 0 50px 100px;
+        color: #fff;
+        max-width: 600px;
+    }
+
+    .HelpInfo h1,
+    .HelpInfo p {
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    .ContactBtn {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .CallBtn,
+    .WhatsappBtn {
+        display: inline-block;
+        padding: 8px 15px;
+        background: #FDE68A;
+        color: rgb(23, 37, 84);
+        text-decoration: none;
+        font: bold;
+        transition: all 0.3s;
+        font-size: 14px;
+        border: 1px solid rgba(255, 77, 77, 0.3);
+    }
+
+    .ContactBtn .CallBtn:hover,
+    .WhatsappBtn:hover {
+        background: rgb(23, 37, 84);
+        color: #fff;
+        transform: translateY(-2px);
+    }
+</style>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="PropertyFile.html">PROPERTY</a></li>
+                <li class="dropdown">
+                    <a href="#">SERVICES</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="BuyingP.html">Buying Property</a></li>
+                        <li><a href="SellingP.html">Selling Property</a></li>
+                    </ul>
+                </li>
+                <li><a href="Agents.html">AGENTS</a></li>
+                <li><a href="#">DEVELOPERS</a></li>
+                 <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="ContactInfo.html">CONTACT US</a></li>
+                <li><a href="#">BEST SOCIETIES</a></li>
+                <li><a href="Booking.html">BOOKING</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+
+        <div class="card-content">
+            <div class="buttons">
+                <a class="button_a" href="tel:+1234567890" onclick="event.stopPropagation()">
+                    <i class="fas fa-phone"></i><br> Phone Number
+                </a>
+                <a class="button_a" href="https://wa.me/+923088178643" onclick="event.stopPropagation()">
+                    <i class="fab fa-whatsapp"></i> <br>WhatsApp
+                </a>
+                <a class="button_a" href="mailto:info@example.com" onclick="event.stopPropagation()">
+                    <i class="fas fa-envelope"></i><br> Email Address
+                </a>
+            </div>
+        </div>
+
+        <div class="HelpInfo">
+            <h1>Our Expert Will Help You</h1>
+            <p>Feel Free to Contact Us at Any Time, We Are Online 24/7</p>
+            <div class="ContactBtn">
+                <a class="CallBtn" href="tel:+1234567890" onclick="event.stopPropagation()">CALL</a>
+                <a class="WhatsappBtn" href="https://wa.me/+923088178643" onclick="event.stopPropagation()">WHATSAPP</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(23, 37, 84);
+            color: rgb(255, 254, 254);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: rgb(23, 37, 84);
+            border-bottom: 2px solid #FDE68A;
+            padding: 10px;
+        }
+
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            position: relative;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: rgb(23, 37, 84);
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            left: 0;
+            top: 100%;
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+            padding: 10px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-overlay h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-overlay p {
+            margin-top: 5px;
+            font-size: 2rem;
+            color: #fff;
+            max-width: 800px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+
+
+
+        .Text-description {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            justify-content: center;
+            text-align: center;
+            justify-items: center;
+        }
+
+        .Text-description h1 {
+            color: #FDE68A;
+        }
+
+        .Text-description p {
+            color: #fff;
+        }
+
+        .features-container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        .feature-card {
+            background-color: rgb(23, 37, 84);
+            border: 1px solid#FDE68A;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 20px #FDE68A;
+            border-color: #FDE68A;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: white;
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+
+        .description-container {
+            margin-top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 75px;
+            font: 14px Raleway, sans-serif;
+            color: #FFFFFF;
+
+        }
+
+
+
+        .description {
+            flex: 1;
+            padding-right: 50px;
+            font-size: large;
+            gap: .800rem;
+        }
+
+        .description h2 {
+            color: #FDE68A;
+            margin-bottom: 20px;
+            font: 2rem Arial;
+        }
+
+        .description-text {
+            font: 1rem Arial;
+            line-height: 1.5rem;
+            font-weight: 300;
+
+            padding: 5px;
+            margin-bottom: 1rem;
+            max-width: 600px;
+        }
+
+        .descriptionImg {
+            max-width: 30%;
+            object-fit: contain;
+            padding-right: 40px;
+        }
+
+
+        /* Main container */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+
+
+        /* Stats cards container */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        /* Individual card styling */
+        .card {
+            background: rgba(32, 71, 93, 0.7);
+            flex: 0 0 calc(33.333% - 20px);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 77, 77, 0.2);
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+
+        /* Card content container */
+        .card-content {
+            padding: 20px;
+        }
+
+        /* Card hover effect */
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(255, 77, 77, 0.3);
+            border-color: #ff4d4d;
+        }
+
+        /* Card heading */
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #ff4d4d;
+            letter-spacing: 1px;
+        }
+
+        /* Card value */
+        .card p {
+            font-size: 16px;
+            color: #ffffff;
+            margin: 8px 0;
+        }
+
+        /* Stat value */
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00e676;
+            text-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
+        }
+
+        /* Property title */
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ff4d4d;
+        }
+
+        /* Price styling */
+        .price {
+            color: #00e676;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* Completion date */
+        .completion {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #cccccc;
+        }
+
+        /* Action buttons */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .buttons .button_a {
+            display: inline-block;
+            padding: 8px 15px;
+            background: rgba(255, 77, 77, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-size: 14px;
+            border: 1px solid rgba(255, 77, 77, 0.3);
+        }
+
+        .buttons .button_a:hover {
+            background: rgba(255, 77, 77, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Property image */
+        .property-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* Clickable card */
+        .clickable-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Glow animation */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px #ff4d4d;
+            }
+
+            50% {
+                box-shadow: 0 0 20px #ff4d4d;
+            }
+
+            100% {
+                box-shadow: 0 0 5px #ff4d4d;
+            }
+        }
+
+
+
+        .partner-section {
+            margin-top: 200px;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px 40px 40px 40px;
+            background-color: #00000033;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .partner-title {
+            font-size: 28px;
+            color: #FDE68A;
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .partner-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #fff;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .partner-section {
+                padding: 25px;
+                margin: 20px;
+            }
+
+            .partner-title {
+                font-size: 24px;
+            }
+        }
+
+
+        .partner-section-about {
+            max-width: 900px;
+            margin-top: 200px;
+            margin: 40px auto;
+            padding: 40px 40px 40px 40px;
+            background-color: #00000033;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+
+        }
+
+        .partner-title-about {
+            font-size: 28px;
+
+
+            color: #FDE68A;
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .partner-content-about {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #fff;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .partner-section-about {
+                padding: 50px;
+                margin: 40px;
+                
+            }
+
+
+        }
+
+
+
+
+
+        .FindAgents {
+            margin-bottom: 30px;
+
+            margin-top: 200px;
+        }
+
+        .FindAgents h1 {
+            font: 24px Raleway, Sans-serif;
+            margin-top: 100px;
+            color: #FDE68A;
+        }
+
+        .FindAgents p {
+            margin-top: 25px;
+            font-size: 1.7rem;
+        }
+
+        .agents-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .agents-container h2 {
+            text-align: center;
+            color: #FDE68A;
+            margin-bottom: 30px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .agents-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .agent-card {
+            background: rgb(23, 37, 84);
+            border-radius: 10px;
+            border: 1px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .agent-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .agent-info h3 {
+            margin: 0;
+            color: #FDE68A;
+            font-size: 20px;
+        }
+
+        .experience {
+            color: #ffffff;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .agent-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .agent-buttons {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+
+            background: rgb(23, 37, 84);
+            gap: 10px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            background: #ff4d4d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-size: 14px;
+            border: none;
+            gap: 5px;
+        }
+
+        .contact-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .contact-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .fas,
+        .fab {
+            font-size: 16px;
+        }
+
+        .HelpInfo {
+            margin: 200px 0 50px 100px;
+            color: #fff;
+            max-width: 600px;
+        }
+
+        .HelpInfo h1,
+        .HelpInfo p {
+            margin: 0;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="PropertyFile.html">PROPERTY</a></li>
+                <li class="dropdown">
+                    <a href="#">SERVICES</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="BuyingP.html">Buying Property</a></li>
+                        <li><a href="SellingP.html">Selling Property</a></li>
+                    </ul>
+                </li>
+                <li><a href="Agents.html">AGENTS</a></li>
+                <li><a href="#">DEVELOPERS</a></li>
+                 <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="ContactInfo.html">CONTACT US</a></li>
+                <li><a href="#">BEST SOCIETIES</a></li>
+                <li><a href="Booking.html">BOOKING</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero-image">
+            <img src="/images/dhaMain-tXhDdXDf.png" alt="OUR AGENTS">
+            <div class="hero-overlay">
+                <h1>Find Your Perfect Property Now</h1>
+                <p>Explore exclusive listings, prime locations, and unbeatable deals.</p>
+            </div>
+        </section>
+
+
+
+
+
+
+        <div class="Text-description">
+            <h1>WHO WE ARE</h1>
+            <p>We are more than just a real estate company – we are your partners, your advocates, and your trusted
+                guides...</p>
+        </div>
+        <div class="features-container">
+
+            <div class="feature-card">
+                <div class="icon">📈</div>
+                <div class="feature-title">Good Marketing</div>
+                <div class="feature-description">
+                    We make a maximum reach for our audience with innovation & digitalization.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">💰</div>
+                <div class="feature-title">Low Cost</div>
+                <div class="feature-description">
+                    We offer quality at the best prices, ensuring cost-efficient, budget-friendly solutions.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🔍</div>
+                <div class="feature-title">Easy to Find</div>
+                <div class="feature-description">
+                    By latest technology, diverse property findings are just a click away.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🛡️</div>
+                <div class="feature-title">Reliable</div>
+                <div class="feature-description">
+                    Our process is designed to deliver unmatched reliability for our clientele.
+                </div>
+            </div>
+        </div>
+
+
+
+        <br><br><br><br>
+        <div class="description-container">
+            <img src="/images/aboutHomePage.jpg" alt="#" class="descriptionImg">
+            <div class="description">
+                <h2>What Makes Pakistan Real Estate ,<br> Challenging?</h2>
+                <p class="description-text">
+                    The process of buying property in Pakistan comes with several challenges that can make it quite
+                    difficult, especially for those who are new to it. One of the main issues is dealing with the
+                    complex
+                    rules and paperwork needed to buy or sell land or buildings. These rules often change and can be
+                    hard to
+                    understand without expert help. Another big problem is the prices of properties, which can go up and
+                    down quickly, making it hard to decide the best time to buy or sell.
+                    <br><br>
+                    Furthermore, checking if a property's documents are genuine and complete is a major challenge. There
+                    are
+                    many cases where buyers find out too late that there are legal issues with the property, like
+                    disputes
+                    over who really owns it or problems with the land titles. This means buyers have to be very careful
+                    and
+                    do a lot of checking before they decide to buy something. Because of these issues, people looking to
+                    invest in Pakistan's real estate market often need to work with experienced lawyers, real estate
+                    agents,
+                    and other professionals.
+                </p>
+            </div>
+
+        </div>
+
+        <br><br><br><br><br><br><br><br>
+
+
+
+        
+
+
+        <div class="Text-description">
+            <h1>OUR PROJECTS</h1>
+        </div>
+
+
+        <div class="container">
+            <div class="stats">
+                <!-- Simple stat card -->
+                <div class="card">
+                    <div class="card-content">
+                        <a href="Property.html" class="clickable-card">
+                            <img src="/images/kharianMain-8UJAappW.png" alt="River Side Views" class="property-image">
+                            <h2>Grand city Vehari</h2>
+                            <p>Hasilpur - vehari Road ,Vehari - Grand city</p>
+                            <p class="price">Starting from: RS 200,000</p>
+                            <p class="completion">Completion: 2025</p>
+                        </a>
+                        <div class="buttons">
+                            <!-- These buttons will work independently of the card link -->
+                            <a class="button_a" href="tel:+1234567890" onclick="event.stopPropagation()">Call</a>
+                            <a class="button_a" href="https://wa.me/+923088178643"
+                                onclick="event.stopPropagation()">WhatsApp</a>
+                            <a class="button_a" href="mailto:info@example.com"
+                                onclick="event.stopPropagation()">Email</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property listing card 2 - Entire card is clickable -->
+                <div class="card">
+                    <div class="card-content">
+                        <a href="Property.html" class="clickable-card">
+                            <img src="/images/riverPlot.png" alt="River Side Views" class="property-image">
+                            <h2>Central Park Lahore</h2>
+                            <p>Main Ferozpur Road - Urban Developers</p>
+                            <p class="price">Starting from: RS 749,000</p>
+                            <p class="completion">Completion: 2025</p>
+                        </a>
+                        <div class="buttons">
+                            <!-- These buttons will work independently of the card link -->
+                            <a class="button_a" href="tel:+1234567890" onclick="event.stopPropagation()">Call</a>
+                            <a class="button_a" href="https://wa.me/+923088178643"
+                                onclick="event.stopPropagation()">WhatsApp</a>
+                            <a class="button_a" href="mailto:info@example.com"
+                                onclick="event.stopPropagation()">Email</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property listing card 3 -->
+                <div class="card">
+                    <div class="card-content">
+                        <a href="Property.html" class="clickable-card">
+                            <img src="/images/metrocityMain-CwaZULYV.png" alt="River Side Views" class="property-image">
+                            <h2>Central Park Lahore(A1 apartment)</h2>
+                            <p>Main Ferozpur Road - Urban Developers</p>
+                            <p class="price">Starting from: 15%</p>
+                            <p class="completion">Completion: 2025</p>
+                        </a>
+                        <div class="buttons">
+                            <!-- These buttons will work independently of the card link -->
+                            <a class="button_a" href="tel:+1234567890" onclick="event.stopPropagation()">Call</a>
+                            <a class="button_a" href="https://wa.me/+923088178643"
+                                onclick="event.stopPropagation()">WhatsApp</a>
+                            <a class="button_a" href="mailto:info@example.com"
+                                onclick="event.stopPropagation()">Email</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <a href="Property.html" class="clickable-card">
+                            <img src="/images/riverPlot.png" alt="River Side Views" class="property-image">
+                            <h2>Central Park Lahore</h2>
+                            <p>Main Ferozpur Road - Urban Developers</p>
+                            <p class="price">Starting from: RS 749,000</p>
+                            <p class="completion">Completion: 2025</p>
+                        </a>
+                        <div class="buttons">
+                            <!-- These buttons will work independently of the card link -->
+                            <a class="button_a" href="tel:+1234567890" onclick="event.stopPropagation()">Call</a>
+                            <a class="button_a" href="https://wa.me/+923088178643"
+                                onclick="event.stopPropagation()">WhatsApp</a>
+                            <a class="button_a" href="mailto:info@example.com"
+                                onclick="event.stopPropagation()">Email</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+        <br><br><br><br><br><br>
+
+        <div class="partner-section">
+            <div class="partner-title">WHAT MAKES DREAM HOMES MARKETING YOUR <br>PERFECT PARTNER?</div>
+            <div class="partner-content">
+                <span class="highlight">Dream Homes Marketing</span> is more than just a real estate agency; we're your
+                trusted partner in fulfilling your dream of owning a home. Our commitment to affordability, prime
+                locations,
+                and exceptional customer service sets us apart. We offer flexible payment plans tailored to your budget,
+                ensuring a smooth and stress-free buying process. Our team of experienced real estate professionals
+                provides
+                expert guidance and support, helping you make informed decisions. With a focus on transparency and
+                trust, we
+                build long-lasting relationships with our clients. Choose <span class="highlight">Dream Homes
+                    Marketing</span> as your perfect partner to turn your dream of homeownership into a reality.
+            </div>
+        </div>
+
+
+
+
+
+
+        <center class="FindAgents">
+            <h1>FIND YOUR AGENT TO FIND A HOME</h1>
+            <p>OUR AGENTS</p>
+        </center>
+        <div class="agents-container">
+            <div class="agents-list">
+                <div class="agent-card">
+
+                    <div class="agent-image">
+                        <img src="/images/ArfatPIC.jpg" alt="Agent Arfat Choudhari" class="property-image">
+                    </div>
+                    <div class="agent-info">
+                        <h3>Arfat Choudhari</h3>
+                        <p class="experience">Experience: 4 years</p>
+                    </div>
+                    <div class="agent-buttons">
+                        <a class="contact-btn" href="tel:+1234567890" onclick="event.stopPropagation()">
+                            <i class="fas fa-phone"></i> Call
+                        </a>
+                        <a class="contact-btn whatsapp" href="https://wa.me/+923088178643"
+                            onclick="event.stopPropagation()">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a class="contact-btn" href="mailto:info@example.com" onclick="event.stopPropagation()">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="agent-card">
+
+                    <div class="agent-image">
+                        <img src="/images/riverPlot.png" alt="Agent Hasnain Khan" class="property-image">
+                    </div>
+                    <div class="agent-info">
+                        <h3>Hasnain Khan</h3>
+                        <p class="experience">Experience: 3 years</p>
+                    </div>
+                    <div class="agent-buttons">
+                        <a class="contact-btn" href="tel:+1234567890">
+                            <i class="fas fa-phone"></i> Call
+                        </a>
+                        <a class="contact-btn whatsapp" href="https://wa.me/+92123456789">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a class="contact-btn" href="mailto:info@example.com">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="partner-section-about">
+            <div class="partner-title-about">ABOUT US</div>
+            <div class="partner-content-about">
+                <p> Dream Homes Marketing is a leading real estate marketing agency dedicated to helping individuals and
+                    families find their <br>
+                    dream homes. With a focus on affordability, prime locations, and customer satisfaction,we've
+                    established ourselves as a <br>
+                    trusted name in the Lahore real estate market. <br><br>
+                    Our team of experienced professionals is passionate about helping you make informed decisions and
+                    achieve your real estate <br>
+                    goals. Whether you're a first-time homebuyer or an experienced investor, we're here to assist you
+                    every step of the way.
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="HelpInfo">
+            <h1>Our Expert Will Help You</h1>
+            <p>Feel Free to Contact Us at Any Time, We Are Online 24/7</p>
+        </div>
+    </main>
+</body>
+
+</html>
