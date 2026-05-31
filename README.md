@@ -223,6 +223,6 @@ http://localhost:5500
 
 ## 👤 Author
 
-**Muhammad Taha**
+**Muhammad Adeel**
 
 ---
